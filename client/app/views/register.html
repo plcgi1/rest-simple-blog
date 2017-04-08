@@ -1,0 +1,51 @@
+<section class="container animated fadeInUp ">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div id="login-wrapper">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Как зовут тебя</h3>
+                    </div>
+
+                    <div class="panel-body registration">
+                        <form class="form-horizontal center-block" role="form" name="lpform" id="lpform" ng-submit="register()" >
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="email">Мыльце</label>
+                                    <input id="email" type="email" ng-pattern="/@.+\..+$/" class="form-control" ng-class="{ 'input-error' : errors.email }" id="login" ng-change="changeData()" ng-model="email" placeholder="email">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="password">Заветное слово</label>
+                                    <input type="password" id="password" class="form-control" ng-class="{ 'input-error' : errors.password }" ng-change="changeData()" ng-model="password" placeholder="пароль">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="retryPassword">Retry password</label>
+                                    <input type="password" id="retryPassword" class="form-control" ng-class="{ 'input-error' : errors.password }" ng-change="changeData()" ng-model="retryPassword" placeholder="пароль">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-success" value="Registration"/>
+                                    <hr>
+                                    <a id="loginLink" data-color="gray" href="#!/login" class="btn btn-block">Login</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

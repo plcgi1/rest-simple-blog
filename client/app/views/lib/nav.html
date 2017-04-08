@@ -1,0 +1,6 @@
+  <h3>Навигация</h3>
+  <ul class="nav navbar-stacked">
+    <li ng-repeat="link in data"  ng-show="(link.show)">
+      <a href="{{link.path}}" >{{link.title}}</a>
+    </li>
+  </ul>

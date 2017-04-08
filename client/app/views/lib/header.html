@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/">Posts</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" ng-controller="PostsCtrl">
+
+            </form>
+            <ul class="nav navbar-nav navbar-right" ng-controller="NavCtrl">
+                <li ng-show="isAuth()">
+                    <a href="#!/posts/new">Add post</a>
+                </li>
+                <li ng-show="isAuth()">
+                    <a href="#!/profile">{{getUserEmail()}}</a>
+                </li>
+                <li ng-show="isAuth()" ><a href="#!/logout">Logout</a></li>
+                <li ng-hide="isAuth()">
+                    <a href="#!/login" class="">
+                        Login
+                    </a>
+                </li>
+                <li ng-hide="isAuth()">
+                    <a href="#!/register" class="">
+                        Register
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

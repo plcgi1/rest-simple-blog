@@ -1,0 +1,21 @@
+<div class="container">
+
+    <section class="animated fadeInRight">
+
+        <h3>Profile</h3>
+
+        <form>
+            <div class="form-group">
+                <label for="oldPassword">Old Password</label>
+                <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="profile.oldPassword">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="profile.password">
+            </div>
+
+            <button type="submit" class="btn btn-default" ng-click="save()">Submit</button>
+        </form>
+    </section>
+</div>

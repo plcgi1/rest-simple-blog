@@ -1,0 +1,60 @@
+<html ng-app="posts">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="fragment" content="!" />
+
+    <!-- build:css css/index.css -->
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="components/animate.css/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="components/angular-growl-v2/build/angular-growl.css">
+
+    <!-- Icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- endbuild -->
+
+</head>
+<body>
+<body ng-controller="CheckAuthCtrl">
+<div growl></div>
+
+<section id="main-wrapper" class="theme-dark">
+    <header class="animated fadeInDown" id="header" ng-controller="AuthCtrl" ng-include="'views/lib/header.html'"></header>
+    <div class="container">
+        <div class="animated fadeInUp" data-ng-view></div>
+    </div>
+</section>
+
+<!-- build:js scripts/components.js -->
+<script type="text/javascript" src="components/angular/angular.js"></script>
+<script type="text/javascript" src="components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="components/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="components/angular-growl-v2/build/angular-growl.js"></script>
+<script type="text/javascript" src="components/localStorageService/src/storageprovider.js"></script>
+<script type="text/javascript" src="components/angular-location-update/angular-location-update.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/index.js -->
+<script type="text/javascript" src="scripts/app.js"></script>
+
+<script type="text/javascript" src="scripts/controllers/nav.js"></script>
+<script type="text/javascript" src="scripts/controllers/auth.js"></script>
+<script type="text/javascript" src="scripts/controllers/posts.js"></script>
+<script type="text/javascript" src="scripts/controllers/post.js"></script>
+<script type="text/javascript" src="scripts/controllers/user.js"></script>
+
+<script type="text/javascript" src="scripts/services/posts.js"></script>
+<script type="text/javascript" src="scripts/services/auth.js"></script>
+<script type="text/javascript" src="scripts/services/users.js"></script>
+<!-- endbuild -->
+
+
+</body>
+</html>

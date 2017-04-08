@@ -1,0 +1,15 @@
+[
+	{
+	    "title" : "Development Tools",
+	    "content" : "Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less."
+	}, {
+	    "title" : "Server and Client integration",
+	    "content" : "Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node."
+	}, {
+	    "title" : "Smart Build System",
+	    "content" : "Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html"
+	},  {
+	    "title" : "Modular Structure",
+	    "content" : "Best practice client and server structures allow for more code reusability and maximum scalability"
+	}
+]

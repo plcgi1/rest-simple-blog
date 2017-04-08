@@ -1,0 +1,24 @@
+<div class="container">
+
+    <section class="animated fadeInRight">
+
+        <h3 ng-bind="post.title"></h3>
+
+        <div class="media">
+            <div class="media-body">
+                <h4 class="media-heading"  ng-show="user.email">
+                    <input type="text" class="form-control" ng-model="post.title">
+                </h4>
+                <p>
+                    <textarea ng-model="post.content" class="form-control" ng-show="user.email"></textarea>
+                    <span ng-hide="user.email">{{post.content}}</span>
+                </p>
+                <div class="pull-right"  ng-show="user.email">
+                    <button ng-click="save()" class="btn btn-success">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
