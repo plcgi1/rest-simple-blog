@@ -1,10 +1,12 @@
+**Setup**
+
 run mongodb - settings from server/config/environment/development.js -> mongo.uri
 
-service mongo start
+> service mongo start
 
 or 
 
-mongod --dbpath /path/to/mongo-db/files
+> mongod --dbpath /path/to/mongo-db/files
 
 run postfix for registration/reset-password logic
 
