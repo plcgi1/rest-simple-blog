@@ -8,5 +8,7 @@ module.exports = {
     uri: 'mongodb://localhost/restsimpleblog-dev'
   },
 
+  host: 'localhost',
+
   seedDB: true
 };

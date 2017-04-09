@@ -30,7 +30,11 @@ function config($routeProvider,$sceDelegateProvider,growlProvider,$animateProvid
 		})
 		.when('/register', {
 			templateUrl: 'views/register.html',
-			controller: 'AuthCtrl'
+			controller: 'RegisterCtrl'
+		})
+		.when('/register/confirm/:hash', {
+			templateUrl: 'views/confirm-registration.html',
+			controller: 'RegisterCtrl'
 		})
 		.when('/reset-password', {
 			templateUrl: 'views/reset-password.html',

@@ -32,6 +32,7 @@ body {
   background-size: 100% !important;
   background-repeat: no-repeat;
   background-position: inherit;
+  min-height: 100%;
 }
 #login-wrapper .logo {
   color: #1d212a;
@@ -73,6 +74,10 @@ body {
 #login-wrapper label{
   font-weight:600;
 }
+.register {
+  min-height: 80%;
+}
+
 .user-email {
   position: relative;
   top: 16px;

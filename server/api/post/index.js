@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./post.controller');
-var auth       = require('../../auth/auth.service');
-var router = express.Router();
+var express = require('express'),
+	controller = require('./post.controller'),
+	auth = require('../../auth/auth.service'),
+	router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
