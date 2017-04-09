@@ -20,6 +20,15 @@ function config($routeProvider,$sceDelegateProvider,growlProvider,$animateProvid
 	$locationProvider.hashPrefix('!');
 
 	$routeProvider
+		.when('/', {
+			templateUrl: 'views/posts.html',
+			controller: 'PostsCtrl'
+		})
+		.when('/posts/:_id', {
+			templateUrl: 'views/post.html',
+			controller: 'PostCtrl'
+		})
+
         .when('/login', {
 			templateUrl: 'views/login.html',
 			controller: 'AuthCtrl'
@@ -44,14 +53,6 @@ function config($routeProvider,$sceDelegateProvider,growlProvider,$animateProvid
 			templateUrl: 'views/reset-password.html',
 			controller: 'ResetPasswordCtrl'
 		})
-		.when('/', {
-			templateUrl: 'views/posts.html',
-			controller: 'PostsCtrl'
-		})
-		.when('/posts/:_id', {
-			templateUrl: 'views/post.html',
-			controller: 'PostCtrl'
-		})
 		.when('/profile', {
 			templateUrl: 'views/profile.html',
 			controller: 'UserCtrl'
@@ -71,13 +72,6 @@ function config($routeProvider,$sceDelegateProvider,growlProvider,$animateProvid
 		// Allow loading from our assets domain.  Notice the difference between * and **.
 		'http://*.com/**'
 	]);
-    
-    var myDefaults = {
-      /* default time to live for each notification */
-      ttl: 1234,
-      /* default type of notification */
-      type: 'danger'
-    };
 
     $animateProvider.classNameFilter(/animate-/);
 }

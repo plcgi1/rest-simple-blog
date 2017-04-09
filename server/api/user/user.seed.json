@@ -10,5 +10,10 @@
 	    "name": "Admin",
 	    "email": "admin@admin.com",
 	    "password": "admin"
-  	}
+  	}, {
+		"provider": "local",
+		"name": "Test User",
+		"email": "plcgi@no-spam.ws",
+		"password": "test"
+	}
 ]

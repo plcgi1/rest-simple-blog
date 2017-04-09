@@ -20,7 +20,7 @@ exports.create = function (req, res, next) {
 	newUser.save(function (err, user) {
 		if (err) return validationError(res, err);
 
-		var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresInMinutes: 60 * 5 });
+		var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresInMinutes: config.timeouts.token });
 
 		res.json({ token: token, email: user.email });
 	});

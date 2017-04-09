@@ -1,4 +1,14 @@
-node v4.4.5
+run mongodb - settings from server/config/environment/development.js -> mongo.uri
+
+service mongo start
+
+or 
+
+mongod --dbpath /path/to/mongo-db/files
+
+run postfix for registration/reset-password logic
+
+node >=v4.4.5
 
 npm install -g grunt-cli
 
@@ -10,15 +20,9 @@ bower install
 
 Registration emails for test purposes: http://no-spam.ws/ 
 
-TODO
+After every stop server - users and posts reloaded from 
+    server/api/posts/post.seed.json, server/api/users/user.seed.json
 
-3 Registration full test
+To run application - write in console:
 
-1 Forget password step 1 - show email screen
-
-2 Forget password step 2 - save and send link to email
-
-3 Forget password step 3 - parse email link and show new password screen
-
-4 Forget password step 4 - save new password
-
+> grunt server

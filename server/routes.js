@@ -14,4 +14,6 @@ module.exports = function (app) {
 	app.use('/auth', require('./auth'));
 
 	app.use('/api/register', require('./api/register'));
+
+	app.use('/api/reset-password', require('./api/reset-password'));
 };
