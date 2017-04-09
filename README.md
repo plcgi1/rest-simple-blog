@@ -1,22 +1,24 @@
+**Setup**
+
 run mongodb - settings from server/config/environment/development.js -> mongo.uri
 
-service mongo start
+> service mongo start
 
 or 
 
-mongod --dbpath /path/to/mongo-db/files
+> mongod --dbpath /path/to/mongo-db/files
 
 run postfix for registration/reset-password logic
 
 node >=v4.4.5
 
-npm install -g grunt-cli
+> npm install -g grunt-cli
 
-npm install -g bower
+> npm install -g bower
 
-npm install
+> npm install
 
-bower install
+> bower install
 
 Registration emails for test purposes: http://no-spam.ws/ 
 
