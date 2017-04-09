@@ -38,7 +38,11 @@ function config($routeProvider,$sceDelegateProvider,growlProvider,$animateProvid
 		})
 		.when('/reset-password', {
 			templateUrl: 'views/reset-password.html',
-			controller: 'AuthCtrl'
+			controller: 'ResetPasswordCtrl'
+		})
+		.when('/reset-password/confirm/:hash', {
+			templateUrl: 'views/reset-password.html',
+			controller: 'ResetPasswordCtrl'
 		})
 		.when('/', {
 			templateUrl: 'views/posts.html',

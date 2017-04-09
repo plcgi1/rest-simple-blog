@@ -27,30 +27,6 @@
 			);
 		};
 
-		$scope.register = function() {
-			var inputData = {
-				email : $scope.email,
-				password : $scope.password,
-                retryPassword: $scope.retryPassword
-			};
-			Auth.register(
-				inputData,
-				function(data) {
-					if ( data.status && data.status === 'error') {
-						error();
-						return;
-					}
-					Auth.saveLS(data);
-
-					setTimeout(function(){
-						$scope.user = Auth.user();
-						location.assign('#!/');
-					},500);
-				},
-				error
-			);
-		};
-
         $scope.getUserEmail = function(){
             var user = Auth.user();
 

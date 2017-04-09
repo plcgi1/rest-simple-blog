@@ -28,11 +28,7 @@ body {
    ========================================================================== */
 #login-wrapper {
   margin: 100px auto;
-  background-image: url('../images/login-bg.jpg');
-  background-size: 100% !important;
-  background-repeat: no-repeat;
-  background-position: inherit;
-  min-height: 100%;
+
 }
 #login-wrapper .logo {
   color: #1d212a;
@@ -59,6 +55,7 @@ body {
 
 #login-wrapper #email,
 #login-wrapper #password,
+#login-wrapper #name,
 #login-wrapper #retryPassword{
   padding-left: 32px;
 }
@@ -74,6 +71,15 @@ body {
 #login-wrapper label{
   font-weight:600;
 }
+#login-wrapper .panel-primary {
+  border: none;
+  background-image: url('../images/login-bg.jpg');
+  background-size: 110% !important;
+  background-repeat: no-repeat;
+  background-position: inherit;
+  min-height: 110%;
+}
+
 .register {
   min-height: 80%;
 }

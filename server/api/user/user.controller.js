@@ -1,24 +1,13 @@
 'use strict';
 
-var User = require('./user.model');
-var passport = require('passport');
-var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
+var User = require('./user.model'),
+	passport = require('passport'),
+	config = require('../../config/environment'),
+	jwt = require('jsonwebtoken');
 
-function validationError (res, err) {
+function validationError(res, err) {
 	return res.status(422).json(err);
 }
-
-/**
- * Get list of users
- * restriction: 'admin'
- */
-exports.index = function (req, res) {
-	User.find({}, '-salt -hashedPassword', function (err, users) {
-		if (err) return res.status(500).send(err);
-		res.status(200).json(users);
-	});
-};
 
 /**
  * Creates a new user
@@ -30,8 +19,10 @@ exports.create = function (req, res, next) {
 	newUser.role = 'user';
 	newUser.save(function (err, user) {
 		if (err) return validationError(res, err);
+
 		var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresInMinutes: 60 * 5 });
-		res.json({ token: token });
+
+		res.json({ token: token, email: user.email });
 	});
 };
 
@@ -43,19 +34,10 @@ exports.show = function (req, res, next) {
 
 	User.findById(userId, function (err, user) {
 		if (err) return next(err);
-		if (!user) return res.status(401).send('Unauthorized');
-		res.json(user.profile);
-	});
-};
 
-/**
- * Deletes a user
- * restriction: 'admin'
- */
-exports.destroy = function (req, res) {
-	User.findByIdAndRemove(req.params.id, function (err, user) {
-		if (err) return res.status(500).send(err);
-		return res.status(204).send('No Content');
+		if (!user) return res.status(401).json({ message: 'Unauthorized' });
+
+		res.json(user.profile);
 	});
 };
 
@@ -63,20 +45,22 @@ exports.destroy = function (req, res) {
  * Change a users password
  */
 exports.changePassword = function (req, res, next) {
-	var userId = req.user._id;
-	var oldPass = String(req.body.oldPassword);
-	var newPass = String(req.body.newPassword);
-
+	var userId = req.user._id,
+		oldPass = String(req.body.oldPassword),
+		newPass = String(req.body.newPassword);
 
 	User.findById(userId, function (err, user) {
 		if (user.authenticate(oldPass)) {
 			user.password = newPass;
+
 			user.save(function (err) {
 				if (err) return validationError(res, err);
-				res.status(200).send('OK');
+
+				res.status(200).json({ status: 'ok' });
 			});
-		} else {
-			res.status(403).send('Forbidden');
+		}
+		else {
+			res.status(403).json({ message: 'Forbidden' });
 		}
 	});
 };
@@ -91,7 +75,9 @@ exports.me = function (req, res, next) {
 		_id: userId
 	}, '-salt -hashedPassword', function (err, user) { // don't ever give out the password or salt
 		if (err) return next(err);
-		if (!user) return res.status(401).send('Unauthorized');
+
+		if (!user) return res.status(401).json({ message: 'Unauthorized' });
+
 		res.json(user);
 	});
 };

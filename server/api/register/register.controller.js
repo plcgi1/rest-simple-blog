@@ -20,7 +20,7 @@ function getConfirmUrl (hash) {
 	if(config.port != 80) {
 		host = host + ':' + config.port;
 	}
-	return 'http://' + host + '/app#!/register/confirm/' + hash;
+	return '<a href="http://' + host + '/app#!/register/confirm/' + hash + '">link</a>';
 }
 
 function getConfirmText(url) {
@@ -59,8 +59,8 @@ exports.register = function(req, res) {
 		};
 
 		sendmail({
-			from: 'no-reply@yourdomain.com',
-			to: 'plcgi@no-spam.ws ',
+			from: 'no-reply@post.com',
+			to: req.body.email,
 			subject: subject,
 			html: text,
 		}, function(err, reply) {
@@ -81,12 +81,18 @@ exports.confirm = function(req, res, next) {
 	}
 
 	if (registerData.hash !== req.params.hash) {
-		return res.status(404).json({ error: 'bad input hash' });
+		return res.status(400).json({ error: 'bad input hash' });
 	}
 
 	req.body = registerData;
 
 	userProvider.create(req, res, function (err, result) {
+		if (err) return res.status(500).send(err);
 
+		delete req.session.register;
+
+		req.session.save();
+
+		res.json({ token: result.token, email: result.email });
 	});
 };
