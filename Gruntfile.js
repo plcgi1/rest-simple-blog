@@ -50,14 +50,6 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      mochaTest: {
-        files: ['server/**/*.spec.js'],
-        tasks: ['env:test', 'mochaTest']
-      },
-      jsTest: {
-        files: [],
-        tasks: ['newer:jshint:all', 'karma']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -91,8 +83,7 @@ module.exports = function (grunt) {
           jshintrc: 'server/.jshintrc'
         },
         src: [
-          'server/**/*.js',
-          '!server/**/*.spec.js'
+          'server/**/*.js'
         ]
       },
       serverTest: {
@@ -115,9 +106,7 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/*',
-            '!<%= yeoman.dist %>/.git*',
-            '!<%= yeoman.dist %>/.openshift',
-            '!<%= yeoman.dist %>/Procfile'
+            '!<%= yeoman.dist %>/.git*'
           ]
         }]
       },
@@ -165,18 +154,6 @@ module.exports = function (grunt) {
         push: true,
         connectCommits: false,
         message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
-      },
-      heroku: {
-        options: {
-          remote: 'heroku',
-          branch: 'master'
-        }
-      },
-      openshift: {
-        options: {
-          remote: 'openshift',
-          branch: 'master'
-        }
       }
     },
 
@@ -193,41 +170,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Test settings
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      }
-    },
-
-    mochaTest: {
-      options: {
-        reporter: 'spec'
-      },
-      src: ['server/**/*.spec.js']
-    },
-
-    protractor: {
-      options: {
-        configFile: 'protractor.conf.js'
-      },
-      chrome: {
-        options: {
-          args: {
-            browser: 'chrome'
-          }
-        }
-      }
-    },
-
     env: {
-      test: {
-        NODE_ENV: 'test'
-      },
-      prod: {
-        NODE_ENV: 'production'
-      },
       all: localConfig
     }
   });
@@ -253,7 +196,6 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'env:prod',
         'express:prod',
         'wait',
         'open',
@@ -283,43 +225,6 @@ module.exports = function (grunt) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve']);
   });
-
-  grunt.registerTask('test', function(target) {
-    if (target === 'server') {
-      return grunt.task.run([
-        'env:all',
-        'env:test',
-        'mochaTest'
-      ]);
-    }
-
-    else if (target === 'client') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'karma'
-      ]);
-    }
-
-    else if (target === 'e2e') {
-      return grunt.task.run([
-        'clean:server',
-        'env:all',
-        'env:test',
-        'express:dev',
-        'protractor'
-      ]);
-    }
-
-    else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
-  });
-
-  grunt.registerTask('build', [
-    'clean:dist'
-  ]);
 
   grunt.registerTask('default', [
     'newer:jshint',
