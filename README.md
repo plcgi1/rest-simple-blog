@@ -12,13 +12,13 @@ run postfix for registration/reset-password logic
 
 node >=v4.4.5
 
-npm install -g grunt-cli
+> npm install -g grunt-cli
 
-npm install -g bower
+> npm install -g bower
 
-npm install
+> npm install
 
-bower install
+> bower install
 
 Registration emails for test purposes: http://no-spam.ws/ 
 
