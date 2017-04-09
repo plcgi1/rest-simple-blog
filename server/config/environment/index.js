@@ -37,7 +37,7 @@ var all = {
 		token: 18000
 	},
 	// List of user roles
-	userRoles: ['guest', 'user', 'admin'],
+	userRoles: ['user', 'admin'],
 
 	// MongoDB connection options
 	mongo: {

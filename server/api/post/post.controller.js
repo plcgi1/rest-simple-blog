@@ -13,73 +13,95 @@ var _ = require('lodash');
 var Post = require('./post.model');
 
 // Get list of posts
-exports.index = function(req, res) {
-  var params = {};
+exports.index = function (req, res) {
+	var params = {};
 
-  if (req.query.query) {
-    params = {
-      $or: [
-          { content: new RegExp(req.query.query, 'i') },
-          { title: new RegExp(req.query.query, 'i') }
-      ]
-    };
-  }
+	if (req.query.query) {
+		params = {
+			$or: [
+				{ content: new RegExp(req.query.query, 'i') },
+				{ title: new RegExp(req.query.query, 'i') }
+			]
+		};
+	}
 
-  Post.find(params, function (err, posts) {
-    if(err) { return handleError(res, err); }
-    return res.status(200).json(posts);
-  });
+	Post.find(params, function (err, posts) {
+		if (err) {
+			return handleError(res, err);
+		}
+		return res.status(200).json(posts);
+	});
 };
 
 // Get a single post
-exports.show = function(req, res) {
-  Post.findById(req.params.id, function (err, post) {
-    if(err) { return handleError(res, err); }
-    if(!post) { return res.status(404).send('Not Found'); }
-    return res.json(post);
-  });
+exports.show = function (req, res) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		if (!post) {
+			return res.status(404).send('Not Found');
+		}
+		return res.json(post);
+	});
 };
 
 // Creates a new post in the DB.
-exports.create = function(req, res) {
-  Post.create(req.body, function(err, post) {
-    if(err) { return handleError(res, err); }
-    return res.status(201).json(post);
-  });
+exports.create = function (req, res) {
+	Post.create(req.body, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		return res.status(201).json(post);
+	});
 };
 
 // Updates an existing post in the DB.
-exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
+exports.update = function (req, res) {
+	if (req.body._id) {
+		delete req.body._id;
+	}
 
-  Post.findById(req.params.id, function (err, post) {
-    if (err) { return handleError(res, err); }
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
 
-    if(!post) { return res.status(404).send('Not Found'); }
+		if (!post) {
+			return res.status(404).send('Not Found');
+		}
 
-    var updated = _.merge(post, req.body);
+		var updated = _.merge(post, req.body);
 
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+		updated.save(function (err) {
+			if (err) {
+				return handleError(res, err);
+			}
 
-      return res.status(200).json(post);
-    });
-  });
+			return res.status(200).json(post);
+		});
+	});
 };
 
 // Deletes a post from the DB.
-exports.destroy = function(req, res) {
-  console.info('req.params', req.params);
-  Post.findById(req.params.id, function (err, post) {
-    if(err) { return handleError(res, err); }
-    if(!post) { return res.status(404).send('Not Found'); }
-    post.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.status(204).send('No Content');
-    });
-  });
+exports.destroy = function (req, res) {
+	console.info('req.params', req.params);
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		if (!post) {
+			return res.status(404).send('Not Found');
+		}
+		post.remove(function (err) {
+			if (err) {
+				return handleError(res, err);
+			}
+			return res.status(204).send('No Content');
+		});
+	});
 };
 
 function handleError(res, err) {
-  return res.status(500).send(err);
+	return res.status(500).send(err);
 }
